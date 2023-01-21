@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using BankApp.Web.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<BankContext>(opt =>
+{
+    opt.UseSqlServer("server=(localdb)\\mssqllocaldb; database=BankDb; integrated security=true;");
+});
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

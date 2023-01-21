@@ -1,7 +1,25 @@
-﻿@{
+﻿@model List<User>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>
-    index works!
-</p>
+<table class="mt-4 table table-hover table-bordered table-sm">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Surname</td>
+            <td></td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
