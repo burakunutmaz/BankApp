@@ -1,0 +1,41 @@
+﻿@model List<AccountListModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-4">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">User Info</h5>
+                <p class="card-text">Name: @ViewBag.FullName</p>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Back to User List</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <h5>Account Information:</h5>
+        @if (Model.Count > 0)
+        {
+            @foreach (var account in Model)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Account Number: @account.AccountNumber</h5>
+                        <p class="card-text">Balance: @account.Balance</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-info text-center" role="alert">
+                <p class="lead">
+                    User does not have an account!
+                </p>
+            </div>
+        }
+
+
+    </div>
+</div>

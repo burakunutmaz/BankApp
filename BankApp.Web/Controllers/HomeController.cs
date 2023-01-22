@@ -1,20 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BankApp.Web.Data.Context;
+using BankApp.Web.Models;
+using BankApp.Web.Data.Repositories;
+using BankApp.Web.Data.Interfaces;
 
 namespace BankApp.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly BankContext _context;
+        private readonly IUserRepository _userRepository;
+        private readonly IUserMapper _userMapper;
 
-        public HomeController(BankContext context)
+        public HomeController(
+            IUserRepository userRepository, IUserMapper userMapper)
         {
-            _context = context;
+            _userRepository = userRepository;
+            _userMapper = userMapper;
         }
 
         public IActionResult Index()
         {
-            return View(_context.Users.ToList());
+            return View(_userMapper.MapToListOfUserList(_userRepository.GetAll()));
         }
     }
 }
